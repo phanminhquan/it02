@@ -1,0 +1,30 @@
+if( window.location.pathname.indexOf( 'checkouts') != -1  && window.location.pathname != '/checkouts/'  && window.location.pathname != '/checkouts') {
+	(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+																								new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+											})(window,document,'script','dataLayer','GTM-MB8FH4J');
+
+	if(typeof dataLayer == 'object'){
+		var datIds = [];
+		$('.product').each(function(){$(this).attr('data-product-id')
+		datIds.push(parseInt($(this).attr('data-product-id')));
+																 })
+		if(window.location.href.indexOf('thank_you') === -1){
+			dataLayer.push({
+				ecomm_prodid: datIds,
+				ecomm_pagetype :"cart",
+				ecomm_totalvalue: parseInt($('.payment-due-price').attr('data-checkout-payment-due-target'))/100
+			});
+		}else{
+			dataLayer.push({
+				ecomm_prodid: datIds,
+				ecomm_pagetype :"purchase",
+				ecomm_totalvalue: parseInt($('.payment-due-price').attr('data-checkout-payment-due-target'))/100
+			});
+		}
+
+
+	}
+
+}
